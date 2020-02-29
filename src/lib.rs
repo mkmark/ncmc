@@ -135,6 +135,9 @@ pub fn convert(file_path: PathBuf) -> Result<PathBuf, Box<error::Error>> {
             .collect::<Vec<_>>()
     };
 
+    //comment163key
+    let mut comment163key: String = "".to_string();
+
     let music_meta: Option<MusicMeta> = {
         input.read_exact(&mut buffer[0..4])?;
         let meta_data_len = get_u32(&buffer[..4]);
@@ -167,6 +170,10 @@ pub fn convert(file_path: PathBuf) -> Result<PathBuf, Box<error::Error>> {
             println!("{:>10}\t{}", "musicName", music_meta.music_name);
             println!("{:>10}\t{}", "album", music_meta.album);
             println!("{:>10}\t{}", "format", music_meta.format);
+
+            //comment163key
+            let mkdata = str::from_utf8(&mut meta_data).unwrap();
+            comment163key = mkdata.to_string();
 
             Some(music_meta)
         }
@@ -290,7 +297,7 @@ pub fn convert(file_path: PathBuf) -> Result<PathBuf, Box<error::Error>> {
                     );
                 }
 
-                vorbis_comment.set("DESCRIPTION", vec![DESCRIPTION]);
+                vorbis_comment.set("DESCRIPTION", vec![comment163key]);
 
                 if let (Some(image), Some(image_mime_type)) = (image, image_mime_type) {
                     tag.add_picture(
@@ -317,10 +324,17 @@ pub fn convert(file_path: PathBuf) -> Result<PathBuf, Box<error::Error>> {
                     );
                 }
 
-                tag.add_comment(id3::frame::Comment {
+                /* tag.add_comment(id3::frame::Comment {
                     lang: "eng".to_string(),
                     description: "converter".to_string(),
                     text: DESCRIPTION.to_string(),
+                }); */
+
+                //comment163key
+                tag.add_comment(id3::frame::Comment {
+                    lang: "eng".to_string(),
+                    description: comment163key.to_string(),
+                    text: comment163key.to_string(),
                 });
 
                 if let (Some(image), Some(image_mime_type)) = (image, image_mime_type) {
