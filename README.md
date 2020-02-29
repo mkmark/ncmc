@@ -1,4 +1,4 @@
-# ncmc &middot; [![Build Status](https://travis-ci.org/magic-akari/ncmc.svg?branch=master)](https://travis-ci.org/magic-akari/ncmc) [![Build status](https://ci.appveyor.com/api/projects/status/qj0uc19p1oxuxn0v?svg=true)](https://ci.appveyor.com/project/magic-akari/ncmc) [![Crates.io](https://img.shields.io/crates/v/ncmc.svg?label=ncmc)](https://crates.io/crates/ncmc)
+# ncmc &middot; [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 forked from magic-akari/ncmc
 
@@ -51,5 +51,7 @@ Or simply drag ".ncm" file(s) upon excutable (if you are in Windows)
 ---
 
 Thanks: 
+
 [magic-akari / ncmc](https://github.com/magic-akari/ncmc)
+
 [anonymous5l / ncmdump](https://github.com/anonymous5l/ncmdump)
