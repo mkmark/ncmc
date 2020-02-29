@@ -15,11 +15,6 @@ If you don’t have cargo, install it following
 https://rustup.rs.
 ```
 
-Install dependency
-```
-cargo install glob
-```
-
 Compile
 ```
 cargo build
